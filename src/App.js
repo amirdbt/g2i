@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { motion } from "framer-motion";
+import Welcome from "./pages/Welcome";
+import Quiz from "./components/Quiz";
+import { Switch, Route } from "react-router-dom";
 
-function App() {
+const variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <motion.h1
+        initial="hidden"
+        animate="visible"
+        variants={variants}
+        transition={{ duration: 2 }}
+      >
+        Trivia Game Coding Challenge
+      </motion.h1>
+      <div className="glass">
+        <Switch>
+          <Route path="/" exact>
+            <Welcome />
+          </Route>
+          <Route path="/quiz">
+            <Quiz />
+          </Route>
+        </Switch>
+      </div>
+    </main>
   );
-}
+};
 
 export default App;
